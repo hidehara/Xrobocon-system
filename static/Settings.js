@@ -1,6 +1,6 @@
 class Settings {
 	static getTitle() {
-		return "越前がにロボコン";
+		return "岸和田ロボコン";
 	};
 	static getGroup(category) {
 		return category == "T" ? "エントリー部門" : "歩行部門";
