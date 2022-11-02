@@ -1,6 +1,6 @@
-# kanirobocon-system / かにロボコン運営システム
+# kishiwadarobocon-system / 岸和田ロボコン運営システム
 
-かにロボコン得点システム、クライアント側 for iPad / PC
+岸和田ロボコン得点システム、クライアント側 for iPad / PC
 
 ## 起動方法
 
