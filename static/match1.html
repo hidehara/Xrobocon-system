@@ -85,13 +85,13 @@ var makeMatch1 = function() {
 		nk++;
 	}
 	console.log(nt, nk);
-	// 低学年と高学年に分ける
+	// 低学年:Tと高学年:Kに分ける
 	var listt = [];
 	var listk = [];
 	for (var i = 0; i < list.length; i++) {
 		if (list[i][1] == "T")
 			listt.push(list[i]);
-		else
+		else // "K"
 			listk.push(list[i]);
 	}
 	// 対戦表
