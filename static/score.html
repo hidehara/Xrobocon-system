@@ -147,7 +147,7 @@ var init = function(entry, match, result) {
 		});
 	}
 };
-var lastpnt = 11;
+var lastpnt = 9;  // ポイントチェックボックス数 : c0〜c9
 var init2 = function(entry, match, result, resultbefore) {
 	var showPoint = function() {
 		for (var i = 1; i <= 2; i++) {
@@ -551,7 +551,7 @@ input[type=checkbox]:checked + label:before {
 </table>
 
 <!--
-# 得点:岸和田
+# 得点:岸和田 （c0〜c9, lastpnt=）
 山ゾーンをでた	1
 26号線をぬけた	3
 海ゾーンにはいった	1
@@ -603,7 +603,7 @@ input[type=checkbox]:checked + label:before {
 <input type=checkbox id=p2c8><label class=pointlblr for=p2c8>レアボール +1</label>
 </div>
 <div class=rare>
-<input type=checkbox id=p1c9><label class=pointlblr for=p2c9>激レアボール +2</label>
+<input type=checkbox id=p2c9><label class=pointlblr for=p2c9>激レアボール +2</label>
 <!--
 <input type=checkbox id=p2c9><label class=pointlblr for=p2c9>&nbsp;</label>
 <input type=checkbox id=p2c10><label class=pointlblr for=p2c10>&nbsp;</label>
