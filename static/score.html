@@ -155,10 +155,10 @@ var init2 = function(entry, match, result, resultbefore) {
 			var pnt = 0;
 			for (var j = 0; j <= lastpnt; j++) {
 				if (get(p + "c" + j).checked) {
-					//if (j == 4 || j == 10) {
-					//if (j == 4 || j == 10 || j == 7 || j == 8) { // 奥レアメタルも+2 // 2019
-					if (j == 4) { // 地球帰還のみ2点 2020
+					if (j == 4 || j == 7) {  // 山ゾーンに戻った、激レアボール
 						pnt += 2;
+					} else if (j == 1 || j == 3) {  // 国道を抜けた、国道を再び抜けた
+						pnt += 3;
 					} else if (j == 5) { //  || j == 9) {
 						if (goalpointflg)
 							pnt++;
