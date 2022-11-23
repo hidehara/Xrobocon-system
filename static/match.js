@@ -1,9 +1,5 @@
 // トーナメント 10人の場合と26人の場合 -> アルゴリズム化したい、初戦で2の乗数にする
 const match = {
-	m0: {
-		series: [ ],
-		match: [ ]
-	},
 	m8: {
 		series: [ 2, 8, 6, 4, 3, 5, 7, 1 ],
 		match: [
@@ -18,6 +14,16 @@ const match = {
 			[ [ 2, 4, -1 ], [ 3, 1, -2 ], ], // 準決勝
 			[ [ -1, -2, -3 ] ] // 決勝
 		]
+	},
+	m2: {
+		series: [ 2, 1 ],
+		match: [
+			[ [ 1, 2, -1 ] ] // 決勝
+		]
+	},
+	m0: {
+		series: [],
+		match: [],
 	},
 	m10: {
 		series: [ 1, 9, 8, 5, 4, 3, 6, 7, 10, 2 ],
@@ -44,17 +50,9 @@ const match = {
 }
 
 const getMatch = (n) => {
-	if (n == 4) {
-		return match.m4;
-	} else if (n == 8) {
-		return match.m8;
-	} else if (n == 10) {
-		return match.m10;
-	} else if (n == 26) {
-		return match.m26;
-	} else if (n == 0) {  // 岸和田調整：決勝がない部門があってもエラーがでないようにする
-		return match.m0;
-	} else {
-		throw new Error("unsupported n match");
+	const r = match["m" + n];
+	if (r) {
+		return r;
 	}
+	throw new Error("unsupported " + n + " match");
 };
