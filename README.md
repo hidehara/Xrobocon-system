@@ -1,6 +1,6 @@
-# kanirobocon-system / かにロボコン運営システム
+# kanirobocon-system / 稲刈りロボコン運営システム
 
-かにロボコン得点システム、クライアント側 for iPad / PC
+北はりま稲刈りロボコン得点システム、クライアント側 for iPad / PC
 
 ## 汎用得点システム
 
