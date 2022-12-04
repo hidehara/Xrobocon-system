@@ -1,15 +1,15 @@
 class Settings {
 	static getTitle() {
-		return "越前がにロボコン";
+		return "北はりま稲刈りロボコン";
 	};
 	static getGroup(category) {
-		return category == "T" ? "エントリー部門" : "歩行部門";
+		return category == "T" ? "" : "";
 	}
 	static getNumberOfMatch(category) {
-		return category == "T" ? 8 : 4;
+		return category == "T" ? 4 : 0;
 	}
 	static getNumberOfStage(category) {
-		return category == "T" ? 2 : 1;
+		return category == "T" ? 1 : 1;
 	}
 	static getPointLabels(){
 		return [
