@@ -12,7 +12,13 @@
 <head>
 <script src=lib/fukuno.js></script>
 <script src=minidb.js></script>
-<script>"use strict";
+<script type="module">
+import { Settings } from "./Settings.js";
+	
+const pointLabels = Settings.getPointLabels();
+const lastpnt = pointLabels.length - 1;
+
+"use strict";
 
 var preflg = true;
 var goalpointflg = false;
@@ -21,6 +27,7 @@ var t1s = 0;
 var t2s = 0;
 
 window.onload = function() {
+	initLabels();
 	var hash = document.location.hash;
 	if (hash.length <= 1) {
 		const entry = [];
@@ -132,6 +139,23 @@ window.onload = function() {
 		});
 	}
 };
+var initLabels = function(){
+	for (var i = 1; i <= 2; i++) {
+		for (var j = 0; j <= lastpnt; j++) {
+			if (j < 5 || j==8  || j==11) {
+				get("p" + i + "c" + j + "l").textContent = pointLabels[j];
+			} else if (j==5){  // HTML element を保持
+				var base = get("p" + i + "c" + j + "l").innerHTML;
+				const tempEl = document.createElement('div');
+				tempEl.innerHTML = base.substr(base.indexOf('<'));
+				//var tags = base.substr(base.indexOf('<'));
+				//console.log(tags);
+				get("p" + i + "c" + j + "l").textContent = pointLabels[j];
+				get("p" + i + "c" + j + "l").appendChild(tempEl.firstElementChild);
+			}
+		}
+	}
+};
 var init = function(entry, match, result) {
 	if (preflg) {
 		init2(entry, match, result);
@@ -149,7 +173,7 @@ var init = function(entry, match, result) {
 		});
 	}
 };
-var lastpnt = 11;
+//var lastpnt = 11;
 var init2 = function(entry, match, result, resultbefore) {
 	var showPoint = function() {
 		for (var i = 1; i <= 2; i++) {
@@ -159,7 +183,7 @@ var init2 = function(entry, match, result, resultbefore) {
 				if (get(p + "c" + j).checked) {
 					//if (j == 4 || j == 10) {
 					//if (j == 4 || j == 10 || j == 7 || j == 8) { // 奥レアメタルも+2 // 2019
-					if (j == 4) { // 地球帰還のみ2点 2020
+					if (j == 4 || j == 12) { // 地球帰還 & 格納庫帰還2点
 						pnt += 2;
 					} else if (j == 5) { //  || j == 9) {
 						if (goalpointflg)
@@ -642,21 +666,22 @@ input[type=checkbox]:checked + label:before {
 -->
 
 <div class=pointborder id=pb1>
-<input type=checkbox id=p1c0><label class=pointlbl for=p1c0>観覧車ゾーン +1</label>
-<input type=checkbox id=p1c1><label class=pointlbl for=p1c1>蜃気楼ゾーン +1</label>
-<input type=checkbox id=p1c2><label class=pointlbl for=p1c2>惑星到着 +1</label>
-<input type=checkbox id=p1c3><label class=pointlbl for=p1c3>たまごおいた +1</label>
-<input type=checkbox id=p1c4><label class=pointlbl for=p1c4>地球帰還 +2</label>
-<input type=checkbox id=p1c5><label class=pointlbl for=p1c5>先ゴール <span id=time1></span></label>
+<input type=checkbox id=p1c0><label class=pointlbl id=p1c0l for=p1c0>地球出発 +1</label>
+<input type=checkbox id=p1c1><label class=pointlbl id=p1c1l for=p1c1>ミルキーウェイ +1</label>
+<input type=checkbox id=p1c2><label class=pointlbl id=p1c2l for=p1c2>惑星到着 +1</label>
+<input type=checkbox id=p1c3><label class=pointlbl id=p1c3l for=p1c3>たまごおいた +1</label>
+<input type=checkbox id=p1c4><label class=pointlbl id=p1c4l for=p1c4>地球帰還 +2</label>
+<input type=checkbox id=p1c12><label class=pointlbl id=p1c12l for=p1c12>格納庫帰還 +2</label>
+<input type=checkbox id=p1c5><label class=pointlbl id=p1c5l for=p1c5>先ゴール <span id=time1></span></label>
 <div class=rare>
-<input type=checkbox id=p1c6><label class=pointlblr for=p1c6>&nbsp;</label>
-<input type=checkbox id=p1c7><label class=pointlblr for=p1c7>&nbsp;</label>
-<input type=checkbox id=p1c8><label class=pointlblr for=p1c8>レアメタル +1</label>
+<input type=checkbox id=p1c6><label class=pointlblr id=p1c6l for=p1c6>&nbsp;</label>
+<input type=checkbox id=p1c7><label class=pointlblr id=p1c7l for=p1c7>&nbsp;</label>
+<input type=checkbox id=p1c8><label class=pointlblr id=p1c8l for=p1c8>レアメタル +1</label>
 </div>
 <div class=rare>
-<input type=checkbox id=p1c9><label class=pointlblr for=p1c9>&nbsp;</label>
-<input type=checkbox id=p1c10><label class=pointlblr for=p1c10>&nbsp;</label>
-<input type=checkbox id=p1c11><label class=pointlblr for=p1c11>激レアメタル +1</label>
+<input type=checkbox id=p1c9><label class=pointlblr id=p1c9l for=p1c9>&nbsp;</label>
+<input type=checkbox id=p1c10><label class=pointlblr id=p1c10l for=p1c10>&nbsp;</label>
+<input type=checkbox id=p1c11><label class=pointlblr id=p1c11l for=p1c11>激レアメタル +1</label>
 </div>
 <!--
 <input type=checkbox id=p1c10><label class=pointlbl for=p1c10>歩行ボーナス ゴール時+2</label>
@@ -664,21 +689,22 @@ input[type=checkbox]:checked + label:before {
 </div>
 
 <div class=pointborder id=pb2>
-<input type=checkbox id=p2c0><label class=pointlbl for=p2c0>観覧車ゾーン +1</label>
-<input type=checkbox id=p2c1><label class=pointlbl for=p2c1>蜃気楼ゾーン +1</label>
-<input type=checkbox id=p2c2><label class=pointlbl for=p2c2>惑星到着 +1</label>
-<input type=checkbox id=p2c3><label class=pointlbl for=p2c3>たまごおいた +1</label>
-<input type=checkbox id=p2c4><label class=pointlbl for=p2c4>地球帰還 +2</label>
-<input type=checkbox id=p2c5><label class=pointlbl for=p2c5>先ゴール <span id=time2></span></label>
+<input type=checkbox id=p2c0><label class=pointlbl id=p2c0l for=p2c0>地球出発 +1</label>
+<input type=checkbox id=p2c1><label class=pointlbl id=p2c1l for=p2c1>ミルキーウェイ +1</label>
+<input type=checkbox id=p2c2><label class=pointlbl id=p2c2l for=p2c2>惑星到着 +1</label>
+<input type=checkbox id=p2c3><label class=pointlbl id=p2c3l for=p2c3>たまごおいた +1</label>
+<input type=checkbox id=p2c4><label class=pointlbl id=p2c4l for=p2c4>地球帰還 +2</label>
+<input type=checkbox id=p2c12><label class=pointlbl id=p2c12l for=p2c12>格納庫帰還 +2</label>
+<input type=checkbox id=p2c5><label class=pointlbl id=p2c5l for=p2c5>先ゴール <span id=time2></span></label>
 <div class=rare>
-<input type=checkbox id=p2c6><label class=pointlblr for=p2c6>&nbsp;</label>
-<input type=checkbox id=p2c7><label class=pointlblr for=p2c7>&nbsp;</label>
-<input type=checkbox id=p2c8><label class=pointlblr for=p2c8>レアメタル +1</label>
+<input type=checkbox id=p2c6><label class=pointlblr id=p2c6l for=p2c6>&nbsp;</label>
+<input type=checkbox id=p2c7><label class=pointlblr id=p2c7l for=p2c7>&nbsp;</label>
+<input type=checkbox id=p2c8><label class=pointlblr id=p2c8l for=p2c8>レアメタル +1</label>
 </div>
 <div class=rare>
-<input type=checkbox id=p2c9><label class=pointlblr for=p2c9>&nbsp;</label>
-<input type=checkbox id=p2c10><label class=pointlblr for=p2c10>&nbsp;</label>
-<input type=checkbox id=p2c11><label class=pointlblr for=p2c11>激レアメタル +1</label>
+<input type=checkbox id=p2c9><label class=pointlblr id=p2c9l for=p2c9>&nbsp;</label>
+<input type=checkbox id=p2c10><label class=pointlblr id=p2c10l for=p2c10>&nbsp;</label>
+<input type=checkbox id=p2c11><label class=pointlblr id=p2c11l for=p2c11>激レアメタル +1</label>
 </div>
 <!--
 <input type=checkbox id=p2c10><label class=pointlbl for=p2c10>歩行ボーナス ゴール時+2</label>
