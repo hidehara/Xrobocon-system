@@ -414,7 +414,7 @@ var init2 = function(entry, match, result, resultbefore) {
 	*/
 };
 
-function changeSide(){
+changeButton.onclick = function(){
 	if(matchno == '1') {
 		//チーム入れ替え
 		var work = document.getElementById('t1name').value ;
@@ -623,7 +623,7 @@ input[type=checkbox]:checked + label:before {
 </style>
 </head>
 <body>
-	<div class="resetbox"><input type="button" value="チェンジ" onclick="changeSide()" class="resetbutton" id="changeButton"></div>
+<div class="resetbox"><input type="button" value="チェンジ" class="resetbutton" id="changeButton"></div>
 <div class="exiv"><input type="text" class="atai" id="t1name" value="左コース" ></div>
 <div class="exiv"><input type="text" class="atai" id="t2name" value="右コース"></div>
 <span class=team id=t1>チームA</span>
